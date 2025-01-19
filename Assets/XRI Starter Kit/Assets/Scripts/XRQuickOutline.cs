@@ -1,37 +1,67 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class XRQuickOutline : Outline
 {
-    [SerializeField] private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable _baseInteractable;
+    [SerializeField] private XRBaseInteractable _baseInteractable;
     [SerializeField] private bool onlyHighlightsWhenNotSelected;
-    private Color _startingColor;
+    private Color startingColor;
 
     private void OnValidate()
     {
         if (!_baseInteractable)
-            _baseInteractable = GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+            _baseInteractable = GetComponentInParent<XRBaseInteractable>();
     }
 
     private void Start()
     {
         OnValidate();
-        _startingColor = OutlineColor;
-        _baseInteractable.hoverEntered.AddListener(  Highlight);
-        _baseInteractable.hoverExited.AddListener(x => enabled = false);
-        _baseInteractable.selectEntered.AddListener(x => enabled = false);
-        _baseInteractable.selectExited.AddListener(x =>
-        {
-            if (_baseInteractable.isHovered) Highlight(null);
-        });
+        startingColor = OutlineColor;
+
+        _baseInteractable.hoverEntered.AddListener(OnHoverEnter);
+        _baseInteractable.hoverExited.AddListener(OnHoverExit);
+        _baseInteractable.selectEntered.AddListener(OnSelectEnter);
+        _baseInteractable.selectExited.AddListener(OnSelectExit);
+
         enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (_baseInteractable != null)
+        {
+            _baseInteractable.hoverEntered.RemoveListener(OnHoverEnter);
+            _baseInteractable.hoverExited.RemoveListener(OnHoverExit);
+            _baseInteractable.selectEntered.RemoveListener(OnSelectEnter);
+            _baseInteractable.selectExited.RemoveListener(OnSelectExit);
+        }
+
+        // Clean up outline materials
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (var renderer in renderers)
+        {
+            var materials = renderer.materials;
+            for (int i = 0; i < materials.Length; i++)
+                if (materials[i].name.Contains("Outline"))
+                    Destroy(materials[i]);
+        }
+    }
+
+    private void OnHoverEnter(HoverEnterEventArgs args) => Highlight(args);
+    private void OnHoverExit(HoverExitEventArgs args) => StopHighlight();
+    private void OnSelectEnter(SelectEnterEventArgs args) => StopHighlight();
+    private void OnSelectExit(SelectExitEventArgs args)
+    {
+        if (_baseInteractable.isHovered)
+            Highlight(null);
     }
 
     public void Highlight(HoverEnterEventArgs args)
     {
         if (onlyHighlightsWhenNotSelected && _baseInteractable.isSelected) return;
         if (args != null && args.interactorObject.transform.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>().hasSelection) return;
-        OutlineColor = _startingColor;
+        OutlineColor = startingColor;
         enabled = true;
     }
 

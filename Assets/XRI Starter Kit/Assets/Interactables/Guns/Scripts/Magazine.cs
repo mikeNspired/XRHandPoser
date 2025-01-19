@@ -62,7 +62,7 @@ namespace MikeNspired.UnityXRHandPoser
 
         public void DisableCollider()
         {
-            StartCoroutine(MoveAndDisableCollider());
+            StartCoroutine(PhysicsHelper.MoveAndDisableCollider(magazineCollider,startingColliderPosition));
         }
 
         public void EnableCollider()
@@ -106,17 +106,7 @@ namespace MikeNspired.UnityXRHandPoser
 
             return true;
         }
-
-        private IEnumerator MoveAndDisableCollider()
-        {
-            yield return new WaitForFixedUpdate();
-            magazineCollider.transform.position += Vector3.one * 9999;
-
-            yield return new WaitForFixedUpdate();
-            magazineCollider.enabled = false;
-            magazineCollider.transform.localPosition = startingColliderPosition;
-        }
-
+        
         public void ReturnMovedColliders()
         {
             StopAllCoroutines();

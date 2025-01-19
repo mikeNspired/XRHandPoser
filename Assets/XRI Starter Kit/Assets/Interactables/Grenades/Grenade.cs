@@ -56,15 +56,6 @@ namespace MikeNspired.UnityXRHandPoser
 
             if (interactable.firstInteractorSelecting != null)
                 interactionManager.SelectExit(interactable.firstInteractorSelecting, interactable);
-
-            StartCoroutine(MoveAndDisable());
-        }
-
-        private IEnumerator MoveAndDisable()
-        {
-            transform.position += Vector3.one * 9999;
-            yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
-            Destroy(gameObject);
         }
 
         public void TakeDamage(float damage, GameObject damager)

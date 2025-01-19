@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils.Bindings;
 using UnityEngine.Events;
@@ -24,7 +25,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
     /// with the Direct Interactor taking priority over the Ray Interactor.
     /// </remarks>
     [AddComponentMenu("XR/Controller Input Action Manager")]
-    public class ControllerInputActionManager : MonoBehaviour
+    public class ControllerInputActionManager : MonoBehaviour, IEnumerable
     {
         [Space]
         [Header("Interactors")]
@@ -457,6 +458,11 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 #pragma warning disable IDE0031 // Use null propagation -- Do not use for UnityEngine.Object types
             return actionReference != null ? actionReference.action : null;
 #pragma warning restore IDE0031
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

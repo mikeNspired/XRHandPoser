@@ -57,7 +57,7 @@ namespace MikeNspired.UnityXRHandPoser
                 interactable = GetComponent<XRGrabInteractable>();
 
             if (!interactionManager)
-                interactionManager = FindObjectOfType<XRInteractionManager>();
+                interactionManager = FindFirstObjectByType<XRInteractionManager>();
         }
 
         /// <summary>

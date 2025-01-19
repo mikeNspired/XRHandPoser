@@ -9,6 +9,5 @@ namespace MikeNspired.UnityXRHandPoser
         public bool canInventory = true;
 
         public bool canDistanceGrab = true;
-
     }
 }

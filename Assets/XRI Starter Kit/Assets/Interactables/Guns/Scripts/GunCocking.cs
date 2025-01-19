@@ -52,7 +52,7 @@ namespace MikeNspired.UnityXRHandPoser
         private void OnValidate()
         {
             if (!interactionManager)
-                interactionManager = FindObjectOfType<XRInteractionManager>();
+                interactionManager = FindFirstObjectByType<XRInteractionManager>();
             if (!xrGrabInteractable)
                 xrGrabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
             if (!mainGrabInteractable)

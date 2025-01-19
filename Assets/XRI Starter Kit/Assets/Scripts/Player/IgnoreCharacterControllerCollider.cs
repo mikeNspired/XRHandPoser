@@ -9,7 +9,7 @@ namespace MikeNspired.UnityXRHandPoser
         private void Start()
         {
             mainColliders = GetComponentsInChildren<Collider>(true);
-            var playerCollider = FindObjectOfType<CharacterController>();
+            var playerCollider = FindFirstObjectByType<CharacterController>();
             if (!playerCollider) return;
             foreach (var c in mainColliders)
             {

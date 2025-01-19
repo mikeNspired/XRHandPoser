@@ -1,0 +1,518 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5968742394728366346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8583664393589897339}
+  - component: {fileID: 5794645212384996616}
+  m_Layer: 0
+  m_Name: HandPoserReferenceTool Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8583664393589897339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968742394728366346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9717092, y: 0.8642678, z: 0.74528474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5794645212384996616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968742394728366346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e22ac6c1e8c2b44e8b8a583c379fef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedData:
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Archery/Recursive
+      Bow/PullInteractor - Bow Scripts
+    leftPoseName: Pose_ArrowGrab
+    rightPoseName: Pose_ArrowGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Archery/Recursive
+      Bow
+    leftPoseName: 
+    rightPoseName: 
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HandGun Infinte
+      Ammo/Bottom -Secondary Hold/Bottom Grab HandPoser
+    leftPoseName: Pose_HandGunBottom
+    rightPoseName: Pose_HandGunBottom
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HandGun Infinte
+      Ammo/HandPoser
+    leftPoseName: Pose_HandGun
+    rightPoseName: Pose_HandGun
+    leftAnimPoseName: Pose_HandGunTriggerPull
+    rightAnimPoseName: Pose_HandGunTriggerPull
+  - gameObjectPath: -------- MINI GAMES /Fork Lift Area/Controls/Knob - On Off Control/TurnableKey/TurnableKeyTransform/HandPoser
+    leftPoseName: Pose_Key
+    rightPoseName: Pose_Key
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Fork Lift Area/Controls/Wheel - Direction
+      Control
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Fork Lift Area/Controls/Lever -Lift Control
+    leftPoseName: Pose_Key
+    rightPoseName: Pose_Key
+    leftAnimPoseName: Pose_JoystickThumbDown
+    rightAnimPoseName: Pose_JoystickThumbDown
+  - gameObjectPath: -------- MINI GAMES /Fork Lift Area/Controls/Lever -Tilt Control
+    leftPoseName: Pose_Key
+    rightPoseName: Pose_Key
+    leftAnimPoseName: Pose_JoystickThumbDown
+    rightAnimPoseName: Pose_JoystickThumbDown
+  - gameObjectPath: -------- MINI GAMES /Fork Lift Area/Controls/Lever - Gear Control
+    leftPoseName: Pose_MediumGrab
+    rightPoseName: Pose_MediumGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (13)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (9)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/GripButton
+    leftPoseName: Pose_Point
+    rightPoseName: Pose_Point
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Drawer/ZomBear
+    leftPoseName: Pose_LargeGrab2
+    rightPoseName: Pose_BearHeadGrab
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (16)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Target Game/Slider Game Difficulty/Grabbable
+      Lever
+    leftPoseName: Pose_TwoFingerPinch
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (6)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (12)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/BallSpawner/BowlingBall (4)/HandPoser
+    leftPoseName: Pose_BowlingBall
+    rightPoseName: Pose_BowlingBall
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/BallSpawner/BowlingBall (3)/HandPoser
+    leftPoseName: Pose_BowlingBall
+    rightPoseName: Pose_BowlingBall
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/BallSpawner/BowlingBall (2)/HandPoser
+    leftPoseName: Pose_BowlingBall
+    rightPoseName: Pose_BowlingBall
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/BallSpawner/BowlingBall (1)/HandPoser
+    leftPoseName: Pose_BowlingBall
+    rightPoseName: Pose_BowlingBall
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- MINI GAMES /Bowling/Lane 1/BallSpawner/BowlingBall/HandPoser
+    leftPoseName: Pose_BowlingBall
+    rightPoseName: Pose_BowlingBall
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Drawer/TinyHat/GrabAttachPoints
+    leftPoseName: Pose_LargeGrab2
+    rightPoseName: Pose_BearHeadGrab
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Door/DoorLocked/Back Door Handle Interactable/DoorHandle
+      Transform/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Door/DoorLocked/Front Door Handle Interactable/DoorHandle
+      Transform/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Door/DoorKey/HandPoser
+    leftPoseName: Pose_Key
+    rightPoseName: Pose_Key
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (5)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Flashlight/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/FireHand (1)/FireHand
+    leftPoseName: Pose_Relax
+    rightPoseName: Pose_Relax
+    leftAnimPoseName: Pose_WideLargeGrab
+    rightAnimPoseName: Pose_WideLargeGrab
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (17)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Torch
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (14)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint/Hand
+      Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (1)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (3)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Magazine
+    leftPoseName: Pose_RifleMagazineGrab
+    rightPoseName: Pose_RifleMagazineGrab
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (15)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Ladder/Ladder
+      Section (1)/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (7)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/InstantCube/Hand
+      Poser
+    leftPoseName: Pose_CubeGrab
+    rightPoseName: Pose_CubeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (11)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Rifle 2H-
+      Simple - No Collider Switching/GunCocking/Hand Poser
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Rifle 2H-
+      Simple - No Collider Switching/SecondaryGrab/Foregrip Grab Point - HandPoser
+    leftPoseName: Pose_Rifle - ForeGripPose
+    rightPoseName: Pose_Rifle - ForeGripPose
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Rifle 2H-
+      Simple - No Collider Switching/Hand Poser
+    leftPoseName: Pose_GunHold
+    rightPoseName: Pose_GunHold
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- MINI GAMES /Bottle Break Game/Slider Game Difficulty/Grabbable
+      Lever
+    leftPoseName: 
+    rightPoseName: 
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HandGun Reloading/Bottom
+      -Secondary Hold/Bottom Grab HandPoser
+    leftPoseName: Pose_HandGunBottom
+    rightPoseName: Pose_HandGunBottom
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HandGun Reloading/Top
+      - GunCocking /HandPoser
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HandGun Reloading
+    leftPoseName: Pose_HandGun
+    rightPoseName: Pose_HandGun
+    leftAnimPoseName: Pose_HandGunTriggerPull
+    rightAnimPoseName: Pose_HandGunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/FireHand/FireHand
+    leftPoseName: Pose_Relax
+    rightPoseName: Pose_Relax
+    leftAnimPoseName: Pose_WideLargeGrab
+    rightAnimPoseName: Pose_WideLargeGrab
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Ladder/Ladder
+      Section (3)/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Teraformer
+      Gun Velocity Tracked/HandPoser
+    leftPoseName: Pose_TerraFormerGunHold
+    rightPoseName: Pose_TerraFormerGunHold
+    leftAnimPoseName: Pose_TerraFormerGunHoldTrigger
+    rightAnimPoseName: Pose_TerraFormerGunHoldTrigger
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (4)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Drawer/TinyHat/GrabAttachPoints
+    leftPoseName: Pose_LargeGrab2
+    rightPoseName: Pose_BearHeadGrab
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Drawer/ZomBear
+      (1)
+    leftPoseName: Pose_LargeGrab2
+    rightPoseName: Pose_BearHeadGrab
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (2)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Ladder/Ladder
+      Section (2)/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (8)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Ladder/Ladder
+      Section/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Second Room Interactables/Rock Climb Wall/RockClimbPoint
+      (10)/Hand Poser
+    leftPoseName: Pose_RockClimbLedge
+    rightPoseName: Pose_RockClimbLedge
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Vignette
+      Controls
+    leftPoseName: Pose_MediumGrab
+    rightPoseName: Pose_MediumGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Interactable
+      Kinematic Torus/HandPoser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Vignette
+      Aperature
+    leftPoseName: Pose_TwoFingerPinch
+    rightPoseName: Pose_TwoFingerPinch
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Dial -
+      Brightness
+    leftPoseName: Pose_Knob
+    rightPoseName: Pose_Knob
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Sword
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Player
+      Turning
+    leftPoseName: Pose_MediumGrab
+    rightPoseName: Pose_MediumGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Dial -
+      Color
+    leftPoseName: Pose_Knob
+    rightPoseName: Pose_Knob
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Halberd - Grab
+      Anywhere - Broken/GrippableArea/HandPoser Left
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Rifle 2Hand- Auto
+      Fire/Primary GrabAttachPoints
+    leftPoseName: Pose_GunHold
+    rightPoseName: Pose_GunHold
+    leftAnimPoseName: Pose_GunTriggerPull
+    rightAnimPoseName: Pose_GunTriggerPull
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Light Switch Lever/Rotation
+      Point/Hand Poser
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Joysticks/Lever
+      -1 Axis
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Vignette
+      Feathering
+    leftPoseName: Pose_TwoFingerPinch
+    rightPoseName: Pose_TwoFingerPinch
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/HeavySword
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Archery/Archery
+      - AutoSpawn
+    leftPoseName: Pose_MediumGrab
+    rightPoseName: Pose_MediumGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Rifle 2Hand- Auto
+      Fire/SecondaryGrab/Foregrip Grab Point - HandPoser
+    leftPoseName: Pose_Rifle - ForeGripPose
+    rightPoseName: Pose_Rifle - ForeGripPose
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Tank
+      Controls/Tank Key/TurnableKey/TurnableKeyTransform/HandPoser
+    leftPoseName: Pose_Key
+    rightPoseName: Pose_Key
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Halberd - Grab
+      Anywhere - Broken/GrippableArea/HandPoser Right
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/Slider
+      Drawer/Drawer/HandPoser
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Joysticks/Lever
+      -All
+    leftPoseName: Pose_Fist
+    rightPoseName: Pose_Fist
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Tank
+      Controls/Lever -Scripts
+    leftPoseName: Pose_JoystickThumbUp
+    rightPoseName: Pose_JoystickThumbUp
+    leftAnimPoseName: Pose_JoystickThumbDown
+    rightAnimPoseName: Pose_JoystickThumbDown
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Tank
+      Controls/Wheel
+    leftPoseName: Pose_LargeGrab
+    rightPoseName: Pose_LargeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table2/VelocityTrackedCube/Hand
+      Poser
+    leftPoseName: Pose_CubeGrab
+    rightPoseName: Pose_CubeGrab
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  - gameObjectPath: -------- INTERTABLES  /Main Room Interactables/Table - Joysticks/Player
+      Speed
+    leftPoseName: Pose_TwoFingerPinch
+    rightPoseName: Pose_TwoFingerPinch
+    leftAnimPoseName: 
+    rightAnimPoseName: 
+  newPoseScriptableObjects: []

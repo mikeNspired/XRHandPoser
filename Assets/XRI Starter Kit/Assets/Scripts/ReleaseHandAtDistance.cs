@@ -27,7 +27,7 @@ namespace MikeNspired.UnityXRHandPoser
             if (!baseInteractable)
                 baseInteractable = GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
             if (!interactionManager)
-                interactionManager = FindObjectOfType<XRInteractionManager>();
+                interactionManager = FindFirstObjectByType<XRInteractionManager>();
         }
 
         private void Update()

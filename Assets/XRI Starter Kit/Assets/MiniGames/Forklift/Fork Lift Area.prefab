@@ -2847,8 +2847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ad55086cb948e4da109d5c7dd7daca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
-  rightHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
+  leftHandPose: {fileID: 0}
+  rightHandPose: {fileID: 0}
   LeftHandAnimationPose: {fileID: 0}
   RightHandAnimationPose: {fileID: 0}
   leftHandAttach: {fileID: 8425272931630736295}
@@ -3599,8 +3599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ad55086cb948e4da109d5c7dd7daca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandPose: {fileID: 5877435377197614000, guid: 511d5a88310168a4c9ad8ae671755cb2, type: 3}
-  rightHandPose: {fileID: 5877435377197614000, guid: 511d5a88310168a4c9ad8ae671755cb2, type: 3}
+  leftHandPose: {fileID: 0}
+  rightHandPose: {fileID: 0}
   LeftHandAnimationPose: {fileID: 0}
   RightHandAnimationPose: {fileID: 0}
   leftHandAttach: {fileID: 3441031283378615415}
@@ -3960,8 +3960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ad55086cb948e4da109d5c7dd7daca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandPose: {fileID: 10702302850324565, guid: 82cf2ad3ed93da0498b4f6940bf925cd, type: 3}
-  rightHandPose: {fileID: 10702302850324565, guid: 82cf2ad3ed93da0498b4f6940bf925cd, type: 3}
+  leftHandPose: {fileID: 0}
+  rightHandPose: {fileID: 0}
   LeftHandAnimationPose: {fileID: 0}
   RightHandAnimationPose: {fileID: 0}
   leftHandAttach: {fileID: 8425272932481348095}
@@ -5792,10 +5792,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ad55086cb948e4da109d5c7dd7daca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
-  rightHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
-  LeftHandAnimationPose: {fileID: 2950167704756457671, guid: c579546042d96b741bd1389716b0fe85, type: 3}
-  RightHandAnimationPose: {fileID: 2950167704756457671, guid: c579546042d96b741bd1389716b0fe85, type: 3}
+  leftHandPose: {fileID: 0}
+  rightHandPose: {fileID: 0}
+  LeftHandAnimationPose: {fileID: 0}
+  RightHandAnimationPose: {fileID: 0}
   leftHandAttach: {fileID: 8425272932088718786}
   rightHandAttach: {fileID: 8425272932899549120}
   hasAnimationPose: 0
@@ -6089,10 +6089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ad55086cb948e4da109d5c7dd7daca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
-  rightHandPose: {fileID: 3875797598057082588, guid: 80b2325e14025aa42860a38b19d96a4f, type: 3}
-  LeftHandAnimationPose: {fileID: 2950167704756457671, guid: c579546042d96b741bd1389716b0fe85, type: 3}
-  RightHandAnimationPose: {fileID: 2950167704756457671, guid: c579546042d96b741bd1389716b0fe85, type: 3}
+  leftHandPose: {fileID: 0}
+  rightHandPose: {fileID: 0}
+  LeftHandAnimationPose: {fileID: 0}
+  RightHandAnimationPose: {fileID: 0}
   leftHandAttach: {fileID: 3441031284847468618}
   rightHandAttach: {fileID: 3441031284065479240}
   hasAnimationPose: 0

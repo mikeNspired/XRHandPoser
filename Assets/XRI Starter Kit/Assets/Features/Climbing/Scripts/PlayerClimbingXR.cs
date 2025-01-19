@@ -177,7 +177,7 @@ namespace MikeNspired.UnityXRHandPoser
             // Release the previous hand’s climb, if still selected
             if (previousHand)
             {
-                var prevInteractor = previousHand.GetComponentInChildren<XRDirectInteractor>();
+                var prevInteractor = previousHand.GetComponentInChildren<XRBaseInteractor>();
                 if (prevInteractor && prevInteractor.interactablesSelected.Count > 0)
                 {
                     var selectedInteractable = prevInteractor.interactablesSelected[0];
@@ -188,7 +188,7 @@ namespace MikeNspired.UnityXRHandPoser
             // Release the current climbing hand’s climb
             if (climbingHand)
             {
-                var climbInteractor = climbingHand.GetComponentInChildren<XRDirectInteractor>();
+                var climbInteractor = climbingHand.GetComponentInChildren<XRBaseInteractor>();
                 if (climbInteractor && climbInteractor.interactablesSelected.Count > 0)
                 {
                     var selectedInteractable = climbInteractor.interactablesSelected[0];

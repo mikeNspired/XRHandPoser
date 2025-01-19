@@ -12,7 +12,7 @@ namespace MikeNspired.UnityXRHandPoser
     {
         [SerializeField] private XRBaseInteractable xrGrabInteractable;
         [SerializeField] private PlayerClimbingXR playerClimbingXR;
-        private XRDirectInteractor xRDirectInteractor;
+        private XRBaseInteractor xRDirectInteractor;
         public float hapticDuration = .1f;
         public float hapticStrength = .5f;
 
@@ -35,7 +35,7 @@ namespace MikeNspired.UnityXRHandPoser
         private void OnSelect(SelectEnterEventArgs args)
         {
             // Get the interactor and its associated components
-            var interactor = args.interactorObject as XRDirectInteractor;
+            var interactor = args.interactorObject as XRBaseInteractor;
             if (interactor == null) return;
 
             var interactorTransform = args.interactorObject.transform;
@@ -60,7 +60,7 @@ namespace MikeNspired.UnityXRHandPoser
         private void OnSelectExit(SelectExitEventArgs args)
         {
             // Get the interactor and its associated components
-            var interactor = (XRDirectInteractor)args.interactorObject;
+            var interactor = (XRBaseInteractor)args.interactorObject;
             if (interactor == null) return;
 
             var controller = interactor.transform.GetComponentInParent<ControllerInputActionManager>();

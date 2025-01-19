@@ -1,48 +1,74 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
 
 namespace MikeNspired.UnityXRHandPoser
 {
     public class InventoryManager : MonoBehaviour
     {
-        [SerializeField]
-        private InputActionReference openMenuInputLeftHand, openMenuInputRightHand;
-        private InventorySlot[] inventorySlots;
-        public ControllerInputActionManager leftController, rightController;
+        [SerializeField] private InputActionReference openMenuInputLeftHand, openMenuInputRightHand;
+        public SphereInteractionCaster leftController, rightController;
+
         [SerializeField] private AudioSource enableAudio, disableAudio;
 
+        [Header("Behavior Settings")]
         [SerializeField] private bool lookAtController;
-        private bool isActive;
+        [SerializeField] private float queryInterval = 0.1f; // Check for closest slot every 0.1s
+        [SerializeField] private float interactionRadius = 0.5f;
 
-        private void Start()
+        [SerializeField] private InventorySlot[] inventorySlots;
+        private bool isActive;
+        private float nextQueryTime;
+
+        private InventorySlot activeLeftSlot;
+        private InventorySlot activeRightSlot;
+
+        public InventorySlot ActiveLeftSlot => activeLeftSlot;
+        public InventorySlot ActiveRightSlot => activeRightSlot;
+
+        private void Awake()
         {
             OnValidate();
+            openMenuInputLeftHand.GetInputAction().performed += _ => ToggleInventoryAtController(false);
+            openMenuInputRightHand.GetInputAction().performed += _ => ToggleInventoryAtController(true);
+            SetupSlots();
+        }
 
-            foreach (var itemSlot in inventorySlots)
-                itemSlot.StartCoroutine(itemSlot.CreateStartingItemAndDisable());
-            
-            openMenuInputLeftHand.GetInputAction().performed += x => ToggleInventoryAtController(false);
-            openMenuInputRightHand.GetInputAction().performed += x => ToggleInventoryAtController(true);
+        private void SetupSlots()
+        {
+            foreach (var slot in inventorySlots)
+                if (slot)
+                    slot.Setup();
         }
 
         private void OnValidate()
         {
-            inventorySlots = GetComponentsInChildren<InventorySlot>();
+            if(inventorySlots.Length == 0) inventorySlots = GetComponentsInChildren<InventorySlot>();
         }
+
         private void OnEnable()
         {
             openMenuInputLeftHand.EnableAction();
             openMenuInputRightHand.EnableAction();
-        } 
+        }
 
         private void OnDisable()
-        { 
+        {
             openMenuInputLeftHand.DisableAction();
             openMenuInputRightHand.DisableAction();
         }
-        
+
+        private void Update()
+        {
+            if (!isActive || Time.time < nextQueryTime) return;
+
+            CheckHandProximity(leftController, ref activeLeftSlot);
+            CheckHandProximity(rightController, ref activeRightSlot);
+
+            nextQueryTime = Time.time + queryInterval;
+        }
+
         private void ToggleInventoryAtController(bool isRightHand)
         {
             if (isRightHand)
@@ -56,30 +82,35 @@ namespace MikeNspired.UnityXRHandPoser
             isActive = !isActive;
             ToggleInventoryItems(isActive, hand);
             PlayAudio(isActive);
+
+            if (isActive)
+                nextQueryTime = Time.time;
+            else
+            {
+                activeLeftSlot?.EndControllerHover();
+                activeLeftSlot = null;
+
+                activeRightSlot?.EndControllerHover();
+                activeRightSlot = null;
+            }
         }
 
         private void PlayAudio(bool state)
         {
-            if (state)
-                enableAudio.Play();
-            else
-                disableAudio.Play();
+            if (state) enableAudio?.Play();
+            else disableAudio?.Play();
         }
-
 
         private void ToggleInventoryItems(bool state, GameObject hand)
         {
-            foreach (var itemSlot in inventorySlots)
+            foreach (var slot in inventorySlots)
             {
                 if (!state)
-                {
-                    itemSlot.DisableSlot();
-                }
+                    slot.DisableSlot();
                 else
                 {
-                    if (itemSlot.gameObject.activeSelf)
-                        itemSlot.EnableSlot();
-                    itemSlot.gameObject.SetActive(true);
+                    slot.gameObject.SetActive(true);
+                    slot.EnableSlot();
                     SetPositionAndRotation(hand);
                 }
             }
@@ -92,14 +123,65 @@ namespace MikeNspired.UnityXRHandPoser
 
             if (lookAtController)
                 SetPosition(hand.transform);
-            else
+            else if (Camera.main)
                 transform.LookAt(Camera.main.transform);
         }
 
         private void SetPosition(Transform hand)
         {
-            var handDirection = hand.transform.forward;
-            transform.transform.forward = Vector3.ProjectOnPlane(-handDirection, transform.up);
+            var handDirection = hand.forward;
+            transform.forward = Vector3.ProjectOnPlane(-handDirection, transform.up);
+        }
+
+        private void CheckHandProximity(SphereInteractionCaster caster, ref InventorySlot activeSlot)
+        {
+            if (caster == null) return;
+
+            var handPosition = caster.transform.position;
+            float closestDistance = float.MaxValue;
+            InventorySlot closestSlot = null;
+
+            foreach (var slot in inventorySlots)
+            {
+                // Skip inactive or unavailable slots
+                if (!slot.gameObject.activeInHierarchy) continue;
+
+                float distance = Vector3.Distance(handPosition, slot.transform.position);
+                if (distance < interactionRadius && distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestSlot = slot;
+                }
+            }
+
+            // If the closest slot changes AND is not null, update it
+            if (closestSlot != activeSlot)
+            {
+                // End hover on the previous active slot
+                activeSlot?.EndControllerHover();
+
+                // Assign the new closest slot and trigger hover logic
+                activeSlot = closestSlot;
+                activeSlot?.BeginControllerHover();
+            }
+            else if (activeSlot != null && !activeSlot.gameObject.activeInHierarchy)
+            {
+                // Ensure the active slot doesn't become null when deactivated or unavailable
+                activeSlot.EndControllerHover();
+                activeSlot = null; // Explicitly clear the reference when no longer valid
+            }
+        }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            foreach (var slot in inventorySlots)
+            {
+                if (slot == null) continue;
+
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(slot.transform.position, interactionRadius);
+            }
         }
     }
 }

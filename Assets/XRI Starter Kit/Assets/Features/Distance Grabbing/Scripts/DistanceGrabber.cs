@@ -111,7 +111,7 @@ namespace MikeNspired.UnityXRHandPoser
             if (!nearFarInteractor)
                 nearFarInteractor = GetComponentInParent<NearFarInteractor>();
             if (!interactionManager)
-                interactionManager = FindObjectOfType<XRInteractionManager>();
+                interactionManager = FindFirstObjectByType<XRInteractionManager>();
 
             debugSphereCast.gameObject.SetActive(showDebug);
             debugOverLapSphere.gameObject.SetActive(showDebug);

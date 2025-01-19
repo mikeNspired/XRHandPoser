@@ -3,6 +3,9 @@ using MikeNspired.UnityXRHandPoser;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PullInteraction : MonoBehaviour
 {
@@ -13,9 +16,10 @@ public class PullInteraction : MonoBehaviour
     [FormerlySerializedAs("_autoSpawnObjectInHand")] [SerializeField]
     private AutoSpawnObjectInHandOnGrab autoSpawnObjectInHandOnGrab;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable xrBaseInteractable;
-    private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor currentInteractor;
-    private float PullAmount;
+    private XRBaseInteractable xrBaseInteractable;
+    private XRBaseInteractor currentInteractor;
+    private HapticImpulsePlayer currentHapticImpulsePlayer;
+    private float pullAmount;
     private bool isSelected, canPlayPullBackSound = true;
     private Arrow currentArrow;
     private Collider[] colliders;
@@ -26,73 +30,71 @@ public class PullInteraction : MonoBehaviour
 
         colliders = transform.parent.GetComponentsInChildren<Collider>(true);
 
-        xrBaseInteractable.selectEntered.AddListener(x => OnSelectedEntered(x.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor));
-        xrBaseInteractable.selectExited.AddListener(x => OnSelectExited(x.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor));
+        xrBaseInteractable.hoverEntered.AddListener(NotchArrow);
+        xrBaseInteractable.selectEntered.AddListener(x => OnSelectedEntered(x.interactorObject as XRBaseInteractor));
+        xrBaseInteractable.selectExited.AddListener(x => OnSelectExited(x.interactorObject as XRBaseInteractor));
     }
 
     private void OnValidate()
     {
         if (!xrBaseInteractable)
-            xrBaseInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+            xrBaseInteractable = GetComponent<XRBaseInteractable>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void NotchArrow(HoverEnterEventArgs arg0)
     {
-        NotchArrow();
+        //Check if interactor has arrow
+        if (currentArrow) return;
+        var interactor = arg0.interactorObject as XRBaseInteractor;
+        if (!interactor || !interactor.hasSelection) return;
+        if (!interactor.firstInteractableSelected.transform.TryGetComponent(out Arrow arrow)) return;
+        
+        currentArrow = arrow;
 
-        void NotchArrow()
-        {
-            //Check if interactor has arrow
-            if (currentArrow) return;
-            if (!other.TryGetComponent(out UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)) return;
-            if (!interactor.hasSelection) return;
-            if (!interactor.firstInteractableSelected.transform.TryGetComponent(out Arrow arrow)) return;
-            currentArrow = arrow;
+        //Remove arrow from hand
+        xrBaseInteractable.interactionManager.SelectExit(interactor, interactor.firstInteractableSelected);
 
-            //Remove arrow from hand
-            xrBaseInteractable.interactionManager.SelectExit(interactor, interactor.firstInteractableSelected);
+        //Make arrow child of bow
+        currentArrow.transform.SetParent(transform);
+        currentArrow.transform.SetLocalPositionAndRotation(start.localPosition, start.localRotation);
 
-            //Make arrow child of bow
-            currentArrow.transform.SetParent(transform);
-            currentArrow.transform.SetLocalPositionAndRotation(start.localPosition, start.localRotation);
+        currentArrow.GetComponent<XRBaseInteractable>().ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase.Late);
+        
+        //Disable rigidbody
+        currentArrow.GetComponent<Rigidbody>().isKinematic = true;
 
-            currentArrow.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>()
-                .ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase.Late);
-            //Disable rigidbody
-            currentArrow.GetComponent<Rigidbody>().isKinematic = true;
+        //Disable grabbable on arrow so player can grab string
+        currentArrow.GetComponent<XRBaseInteractable>().enabled = false;
 
-            //Disable grabbable on arrow so player can grab string
-            currentArrow.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>().enabled = false;
-
-            arrowNotchedAudio.Play();
-        }
+        arrowNotchedAudio.Play();
     }
 
-    private void OnSelectedEntered(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)
+    private void OnSelectedEntered(XRBaseInteractor interactor)
     {
         isSelected = true;
         currentInteractor = interactor;
-        currentInteractor.GetComponentInParent<XRBaseController>()?.SendHapticImpulse(.7f, .05f);
+        currentHapticImpulsePlayer = currentInteractor.GetComponentInParent<HapticImpulsePlayer>();
+        currentHapticImpulsePlayer?.SendHapticImpulse(.7f, .05f);
     }
 
 
-    private void OnSelectExited(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)
+    private void OnSelectExited(XRBaseInteractor interactor)
     {
         isSelected = false;
         currentInteractor = null;
         canPlayPullBackSound = true;
-        launchClip.Play(PullAmount);
+        launchClip.Play(pullAmount);
 
-        if (PullAmount > 0 && currentArrow)
+        if (pullAmount > 0 && currentArrow)
         {
             currentArrow.transform.SetParent(null);
-            currentArrow.Release(PullAmount, colliders);
+            currentArrow.Release(pullAmount, colliders);
             currentArrow = null;
             autoSpawnObjectInHandOnGrab.TrySpawn();
         }
 
-        PullAmount = 0f;
-        skinnedMeshRenderer.SetBlendShapeWeight(0, PullAmount);
+        pullAmount = 0f;
+        skinnedMeshRenderer.SetBlendShapeWeight(0, pullAmount);
     }
 
 
@@ -102,21 +104,21 @@ public class PullInteraction : MonoBehaviour
     {
         if (!isSelected) return;
         Vector3 pullPosition = currentInteractor.transform.position;
-        PullAmount = CalculatePull(pullPosition);
+        pullAmount = CalculatePull(pullPosition);
 
-        skinnedMeshRenderer.SetBlendShapeWeight(0, PullAmount * 100);
+        skinnedMeshRenderer.SetBlendShapeWeight(0, pullAmount * 100);
 
         //Update string position from blend shape string position
-        stringPosition.position = Vector3.Lerp(start.position, end.position, PullAmount);
-        stringPosition.rotation = Quaternion.Lerp(start.rotation, end.rotation, PullAmount);
+        stringPosition.position = Vector3.Lerp(start.position, end.position, pullAmount);
+        stringPosition.rotation = Quaternion.Lerp(start.rotation, end.rotation, pullAmount);
 
         if (currentArrow)
             currentArrow.transform.SetPositionAndRotation(stringPosition.position, stringPosition.rotation);
 
-        if (PullAmount > .3f)
+        if (pullAmount > .3f)
         {
-            if (Math.Abs(lastFramePullBack - PullAmount) > .01f)
-                currentInteractor.GetComponentInParent<XRBaseController>()?.SendHapticImpulse(PullAmount / 5f, .05f);
+            if (Math.Abs(lastFramePullBack - pullAmount) > .01f)
+                currentHapticImpulsePlayer?.SendHapticImpulse(pullAmount / 5f, .05f);
             if (canPlayPullBackSound)
             {
                 canPlayPullBackSound = false;
@@ -126,7 +128,7 @@ public class PullInteraction : MonoBehaviour
         else
             canPlayPullBackSound = true;
 
-        lastFramePullBack = PullAmount;
+        lastFramePullBack = pullAmount;
     }
 
     private float CalculatePull(Vector3 pullPosition)

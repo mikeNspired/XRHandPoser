@@ -67,7 +67,7 @@ namespace MikeNspired.UnityXRHandPoser
             if (!xrGrabInteractable)
                 xrGrabInteractable = GetComponentInParent<XRGrabInteractable>();
             if (!interactionManager)
-                interactionManager = FindObjectOfType<XRInteractionManager>();
+                interactionManager = FindFirstObjectByType<XRInteractionManager>();
         }
 
         private void CreateStartingMagazine()

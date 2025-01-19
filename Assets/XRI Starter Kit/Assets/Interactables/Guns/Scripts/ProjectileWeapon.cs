@@ -158,7 +158,8 @@ namespace MikeNspired.UnityXRHandPoser
 
             // Audio + Particle
             fireAudio?.PlayOneShot(fireAudio.clip);
-            cartridgeEjection?.Play();
+            if(cartridgeEjection)
+                cartridgeEjection.Play();
         }
 
         private void IgnoreColliders(Component bullet)

@@ -11,11 +11,10 @@ namespace MikeNspired.UnityXRHandPoser
     /// </summary>
     public class HandPoser : MonoBehaviour
     {
-        public Pose leftHandPose = null;
-        public Pose rightHandPose = null;
-
-        public Pose LeftHandAnimationPose = null;
-        public Pose RightHandAnimationPose = null;
+        public PoseScriptableObject leftHandPose;
+        public PoseScriptableObject rightHandPose;
+        public PoseScriptableObject LeftHandAnimationPose;
+        public PoseScriptableObject RightHandAnimationPose;
 
         public Transform leftHandAttach = null;
         public Transform rightHandAttach = null;
@@ -26,6 +25,8 @@ namespace MikeNspired.UnityXRHandPoser
         [SerializeField] private Transform grabAttachPoints = null;
 
         private HandAnimator currentHandGrabbing;
+
+        public bool HasAnimationPose => hasAnimationPose;
 
         protected virtual void Awake()
         {
@@ -76,7 +77,7 @@ namespace MikeNspired.UnityXRHandPoser
 
 
         //Tells the hand to begin the new poses
-        private void SetToPose(HandAnimator hand, Pose primaryPose, Pose animPose)
+        private void SetToPose(HandAnimator hand, PoseScriptableObject primaryPose, PoseScriptableObject animPose)
         {
             hand.BeginNewPoses(primaryPose, animPose, true);
         }
@@ -86,7 +87,7 @@ namespace MikeNspired.UnityXRHandPoser
 
         #region EditorMethods
 
-        private void SetToPoseInEditor(HandAnimator hand, Pose primaryPose, Pose animPose)
+        private void SetToPoseInEditor(HandAnimator hand, PoseScriptableObject primaryPose, PoseScriptableObject animPose)
         {
             hand.SetPoses(primaryPose, animPose);
             hand.AnimateInstantly(primaryPose);
@@ -193,7 +194,7 @@ namespace MikeNspired.UnityXRHandPoser
             curHand = hand;
         }
 
-        private void SetHandToPose(HandAnimator curHand, Transform attachmentPoint, Pose currentPose)
+        private void SetHandToPose(HandAnimator curHand, Transform attachmentPoint, PoseScriptableObject currentPose)
         {
             curHand.transform.SetPositionAndRotation(attachmentPoint.transform.position, attachmentPoint.transform.rotation);
             SetToPoseInEditor(curHand, currentPose, null);

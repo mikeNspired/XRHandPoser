@@ -1,68 +1,104 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 namespace MikeNspired.UnityXRHandPoser
 {
     public class InventoryGrabInteract : MonoBehaviour
     {
-        [SerializeField] private InputActionReference leftControllerInput, rightControllerInput;
-        [SerializeField] private InventoryManager inventoryManager; 
+        [SerializeField] private InputActionReference leftControllerInput;
+        [SerializeField] private InputActionReference rightControllerInput;
 
-        private List<ControllerInputActionManager> hoveringControllers = new List<ControllerInputActionManager>();
-        private InventorySlot inventorySlot;
+        // Reference to the InventoryManager in the scene/parent
+        [SerializeField] private InventoryManager inventoryManager;
 
-        private void Start()
+        private void Awake()
         {
-            OnValidate();
+            // If not assigned in Inspector, try to find one in parent or anywhere in the scene
+            if (!inventoryManager)
+                inventoryManager = GetComponentInParent<InventoryManager>();
 
+            if (!inventoryManager)
+                Debug.LogWarning("InventoryManager is missing or not assigned in Inspector!", this);
+
+            if (leftControllerInput == null || leftControllerInput.action == null)
+                Debug.LogWarning("LeftControllerInput or its action is null.", this);
+            if (rightControllerInput == null || rightControllerInput.action == null)
+                Debug.LogWarning("RightControllerInput or its action is null.", this);
+        }
+
+        private void OnEnable()
+        {
             if (leftControllerInput?.action != null)
             {
-                leftControllerInput.action.performed += _ => CheckControllerInteraction(inventoryManager.leftController);
-                leftControllerInput.action.canceled += _ => CheckControllerInteraction(inventoryManager.leftController);
+                leftControllerInput.action.performed += OnLeftControllerAction;
+                leftControllerInput.action.canceled += OnLeftControllerAction;
+
             }
 
             if (rightControllerInput?.action != null)
             {
-                rightControllerInput.action.performed += _ => CheckControllerInteraction(inventoryManager.rightController);
-                rightControllerInput.action.canceled += _ => CheckControllerInteraction(inventoryManager.rightController);
+                rightControllerInput.action.performed += OnRightControllerAction;
+                rightControllerInput.action.canceled += OnRightControllerAction;
             }
         }
 
-        private void OnValidate()
+        private void OnDisable()
         {
-            if (!inventoryManager)
-                inventoryManager = GetComponentInParent<InventoryManager>();
+            if (leftControllerInput?.action != null)
+            {
+                leftControllerInput.action.performed -= OnLeftControllerAction;
+                leftControllerInput.action.canceled -= OnLeftControllerAction;
 
-            if (!inventorySlot)
-                inventorySlot = GetComponent<InventorySlot>();
+            }
+
+            if (rightControllerInput?.action != null)
+            {
+                rightControllerInput.action.performed -= OnRightControllerAction;
+                rightControllerInput.action.canceled -= OnRightControllerAction;
+            }
         }
 
-        private void CheckControllerInteraction(ControllerInputActionManager controller)
+        private void OnLeftControllerAction(InputAction.CallbackContext context)
         {
-            if (!hoveringControllers.Contains(controller) || !inventorySlot.gameObject.activeInHierarchy) return;
-            
-            var interactor = controller.GetComponentInChildren<XRDirectInteractor>();
-            if (interactor != null)
-                inventorySlot.TryInteractWithSlot(interactor);
+            if (!inventoryManager) return;
+
+            // Which slot is hovered by the left hand?
+            var slot = inventoryManager.ActiveLeftSlot;
+            if (!slot)
+                return; // No hovered slot, do nothing
+
+            // Get the interactor from the manager's left controller
+            var leftInteractor = inventoryManager.leftController.GetComponentInChildren<NearFarInteractor>();
+            if (leftInteractor != null)
+            {
+                slot.TryInteractWithSlot(leftInteractor);
+            }
+            else
+            {
+                Debug.LogWarning("NearFarInteractor not found on the left controller.");
+            }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnRightControllerAction(InputAction.CallbackContext context)
         {
-            if (!other.TryGetComponent(out XRBaseInteractor interactor)) return;
+            if (!inventoryManager) return;
 
-            var controller = interactor.GetComponentInParent<ControllerInputActionManager>();
-            if (controller != null && !hoveringControllers.Contains(controller))
-                hoveringControllers.Add(controller);
-        }
+            // Which slot is hovered by the right hand?
+            var slot = inventoryManager.ActiveRightSlot;
+            if (!slot)
+                return; // No hovered slot, do nothing
 
-        private void OnTriggerExit(Collider other)
-        {
-            var controller = other.GetComponentInParent<ControllerInputActionManager>();
-            if (controller != null)
-                hoveringControllers.Remove(controller);
+            // Get the interactor from the manager's right controller
+            var rightInteractor = inventoryManager.rightController.GetComponentInChildren<NearFarInteractor>();
+            if (rightInteractor != null)
+            {
+                slot.TryInteractWithSlot(rightInteractor);
+            }
+            else
+            {
+                Debug.LogWarning("NearFarInteractor not found on the right controller.");
+            }
         }
     }
 }
